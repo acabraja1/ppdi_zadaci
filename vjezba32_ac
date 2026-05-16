@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<narudzba>
+    <ime>Ivan</ime>
+    <prezime>Horvat</prezime>
+    <mjestostanovanja>
+        <adresa>Ulica kralja Tomislava 15</adresa>
+        <grad>Zagreb</grad>
+        <drzava>Hrvatska</drzava>
+    </mjestostanovanja>
+    <naruceniartikl>
+        <naziv>Laptop</naziv>
+        <kolicina>1</kolicina>
+        <cijena>999.99</cijena>
+    </naruceniartikl>
+</narudzba>
+ 
