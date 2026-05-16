@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<podaci>
+    <ime>Antonio</ime>
+    <cijena>99.99</cijena>
+    <godine>21</godine>
+    <aktivan>true</aktivan>
+    <datumrodjenja>2004-10-12</datumrodjenja>
+    <vrijemepocetka>08:30:00</vrijemepocetka>
+</podaci>
