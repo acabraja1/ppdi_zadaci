@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osoba spol="M">
+    <ime>Ivan</ime>
+    <prezime>Horvat</prezime>
+    <mjestostanovanja>
+        <adresa>Ulica kralja Tomislava 15</adresa>
+        <grad>Zagreb</grad>
+        <drzava>Hrvatska</drzava>
+    </mjestostanovanja>
+    <kontakt>
+        <mobitel>+385 91 234 5678</mobitel>
+        <kucnitelefon>01 234 5678</kucnitelefon>
+        <email>ivan.horvat@email.com</email>
+    </kontakt>
+</osoba>
