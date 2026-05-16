@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<narudzba>
+    <kupac>Ivan Horvat</kupac>
+    <datumNarudzbe>2026-05-16</datumNarudzbe>
+    <kolicina>5</kolicina>
+    <statusNarudzbe>zaprimljena</statusNarudzbe>
+    <ukupanIznos valuta="EUR">149.99</ukupanIznos>
+</narudzba>
