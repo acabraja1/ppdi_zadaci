@@ -1,0 +1,196 @@
+<?php
+$json = '{
+  "ime": "Petar",
+  "prezime": "Kovač",
+  "starost": 30,
+  "auti": [
+    {
+      "marka": "Ford",
+      "models": ["Mustang", "Focus", "Fiesta"],
+      "godina": 2018,
+      "boja": "crvena",
+      "registriran": true,
+      "cijena": 28000,
+      "kilometri": 45000,
+      "gorivo": "Benzin",
+      "vlasnik_od": "2019-03-15"
+    },
+    {
+      "marka": "BMW",
+      "models": ["320", "X1", "X6"],
+      "godina": 2020,
+      "boja": "crna",
+      "registriran": true,
+      "cijena": 35000,
+      "kilometri": 22000,
+      "gorivo": "Dizel",
+      "vlasnik_od": "2021-06-01"
+    },
+    {
+      "marka": "Fiat",
+      "models": ["500", "Panda"],
+      "godina": 2015,
+      "boja": "bijela",
+      "registriran": false,
+      "cijena": 9000,
+      "kilometri": 98000,
+      "gorivo": "Benzin",
+      "vlasnik_od": "2016-11-20"
+    },
+    {
+      "marka": "Opel",
+      "models": ["Astra", "Corsa", "Insignia"],
+      "godina": 2012,
+      "boja": "siva",
+      "registriran": false,
+      "cijena": 6500,
+      "kilometri": 145000,
+      "gorivo": "Dizel",
+      "vlasnik_od": "2013-04-10"
+    }
+  ]
+}';
+
+$podatci = json_decode($json, true);
+
+$brojPrikazanih = 0;
+$autiHtml = "";
+
+foreach ($podatci["auti"] as $auto) {
+
+    if ($auto["registriran"] == true) {
+
+        $brojPrikazanih++;
+
+        $modeliHtml = "";
+
+        foreach ($auto["models"] as $model) {
+            $modeliHtml .= "<li>" . $model . "</li>";
+        }
+
+        // Oznaka cijene
+        if ($auto["cijena"] > 20000) {
+            $cijenaKlasa = "price-high";
+            $cijenaOznaka = "Skuplji automobil";
+        } else {
+            $cijenaKlasa = "price-low";
+            $cijenaOznaka = "Povoljniji automobil";
+        }
+
+        $autiHtml .= "
+            <div class='car'>
+                <h3>" . $auto["marka"] . "</h3>
+
+                <div class='car-data'>
+                    <div class='data-box'>
+                        <span>Godina</span>
+                        <strong>" . $auto["godina"] . "</strong>
+                    </div>
+
+                    <div class='data-box'>
+                        <span>Boja</span>
+                        <strong>" . $auto["boja"] . "</strong>
+                    </div>
+
+                    <div class='data-box'>
+                        <span>Cijena</span>
+                        <strong>" . number_format($auto["cijena"], 0, ',', '.') . " €</strong>
+                    </div>
+
+                    <div class='data-box'>
+                        <span>Kilometri</span>
+                        <strong>" . number_format($auto["kilometri"], 0, ',', '.') . " km</strong>
+                    </div>
+
+                    <div class='data-box'>
+                        <span>Gorivo</span>
+                        <strong>" . $auto["gorivo"] . "</strong>
+                    </div>
+
+                    <div class='data-box'>
+                        <span>Vlasnik od</span>
+                        <strong>" . $auto["vlasnik_od"] . "</strong>
+                    </div>
+                </div>
+
+                <div class='status'>Registriran</div>
+                <div class='price-tag " . $cijenaKlasa . "'>" . $cijenaOznaka . "</div>
+
+                <div class='models'>
+                    <h4>Modeli</h4>
+                    <ul>
+                        " . $modeliHtml . "
+                    </ul>
+                </div>
+            </div>
+        ";
+    }
+}
+
+if ($brojPrikazanih > 0) {
+    $rezultatHtml = "
+        <div class='result'>
+            Ukupan broj prikazanih automobila: " . $brojPrikazanih . "
+        </div>
+    ";
+} else {
+    $rezultatHtml = "
+        <div class='empty'>
+            Nema automobila koji zadovoljavaju uvjet filtriranja.
+        </div>
+    ";
+}
+
+print "
+<!DOCTYPE html>
+<html lang='hr'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Filtriranje JSON podataka</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Verdana, Arial, sans-serif;
+            background: #101820;
+            color: #f4f4f4;
+            min-height: 100vh;
+            padding: 32px;
+        }
+
+        .page {
+            max-width: 1150px;
+            margin: 0 auto;
+        }
+
+        .top {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 24px;
+            margin-bottom: 28px;
+        }
+
+        .intro {
+            background: linear-gradient(135deg, #f2aa4c 0%, #d96c06 100%);
+            color: #101820;
+            padding: 30px;
+            border-radius: 8px 34px 8px 34px;
+            box-shadow: 8px 8px 0 #000000;
+        }
+
+        .intro h1 {
+            margin: 0 0 14px 0;
+            font-size: 36px;
+            letter-spacing: -1px;
+        }
+
+        .intro p {
+            margin: 0;
+            font-size: 18px;
+            line-height: 1.6;
+        }
